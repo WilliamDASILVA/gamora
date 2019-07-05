@@ -1,6 +1,6 @@
 {
-  "name": "drakov",
-  "version": "1.0.4",
+  "name": "gamora",
+  "version": "1.0.0",
   "description": "Mock server that implements the API Blueprint specification",
   "main": "./index.js",
   "bin": {
@@ -9,20 +9,23 @@
   "scripts": {
     "test": "grunt"
   },
-  "homepage": "https://github.com/aconex/drakov",
-  "author": {
-    "name": "Yakov Khalinsky",
-    "email": "ykhalinsky@aconex.com"
-  },
+  "homepage": "https://github.com/WilliamDASILVA/gamora",
+  "author": "William DA SILVA <william.da.silva@chronotruck.com>",
+  "contributors": [
+    {
+      "name": "Yakov Khalinsky",
+      "email": "ykhalinsky@aconex.com"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Aconex/drakov.git"
+    "url": "https://github.com/WilliamDASILVA/gamora.git"
   },
   "bugs": {
-    "url": "https://github.com/aconex/drakov/issues"
+    "url": "https://github.com/WilliamDASILVA/gamora/issues"
   },
   "engines": {
-    "node": ">= 0.12"
+    "node": ">= 8"
   },
   "license": "MIT",
   "dependencies": {
