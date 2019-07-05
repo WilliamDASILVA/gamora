@@ -1,38 +1,24 @@
-# Drakov API Blueprint Mock Server
+# Gamora API Blueprint Mock Server
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/Aconex/drakov?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/WilliamDASILVA/gamora?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
     
-[![npm version](https://badge.fury.io/js/drakov.svg)](http://badge.fury.io/js/drakov) [![Build Status](https://travis-ci.org/Aconex/drakov.svg)](https://travis-ci.org/Aconex/drakov)
+[![npm version](https://badge.fury.io/js/gamora.svg)](http://badge.fury.io/js/gamora) [![Build Status](https://travis-ci.org/WilliamDASILVA/gamora.svg)](https://travis-ci.org/WilliamDASILVA/gamora)
 
 ![Drakov](drakov.png)
 
 Mock server that implements the [API Blueprint](http://apiblueprint.org/) specification:
 
-
-## Community
-
-We have setup a google group to assist with the answering of questions any users of Drakov may have.
-
-It can be found at [https://groups.google.com/forum/?hl=en#!forum/drakov-api-server](https://groups.google.com/forum/?hl=en#!forum/drakov-api-server)
-
-
-## Notes on the Node.js compatibility
-
-Since version 1.0.2, a version of the Drafter package is being used, which attempts to install the version with C bindings (faster), but falls back if compilation of this package fails to Drafter.js.
-
-
 ## MSON Support via Attribute elements
 
 Since version 0.1.12 MSON support is now provided.
-
 
 ## Logging to assist with debugging request matching
 
 Drakov provide some logging in the following situations:
 
- - When request's path does not match any documented endpoints
- - When request's headers does not match headers schema
- - When request's body does not match body schema (corresponding to request's content-type)
+- When request's path does not match any documented endpoints
+- When request's headers does not match headers schema
+- When request's body does not match body schema (corresponding to request's content-type)
 
 ### Debug Mode
 
@@ -40,13 +26,11 @@ When flag `--debugMode` is set on Drakov's start up all mismatching requests wil
 
 ## Installation instructions
 
-`npm install -g drakov`
-
+`npm install -g gamora`
 
 ## Running
 
 `drakov -f <glob expression to your md files> -s <comma delimited list of static file paths> -p <server port>`
-
 
 **Argument Notes:**
 
@@ -55,15 +39,13 @@ When flag `--debugMode` is set on Drakov's start up all mismatching requests wil
 - Server port is optional and defaults to **3000**
 - CORS headers are sent by default, you need to use the --disableCORS switch/property
 
-
 ## Running with configuration file
 
 `drakov --config config.js`
 
 **Important**
-
 This mode of operation will load your configuration from a Javascript file that must export an object of arguments as
-supported in the [arguments module](https://github.com/Aconex/drakov/blob/master/lib/arguments/arguments.js).
+supported in the [arguments module](https://github.com/WilliamDASILVA/gamora/blob/master/lib/arguments/arguments.js).
 
 All command line arguments aside from `--config` will be ignored, and the defaults will be merged in.
 
@@ -77,13 +59,11 @@ and walk up the path until `/` is reached.
 The `.drakovrc` file should be a valid Node.js module that exports a valid Drakov configuration object such as would be
 used with the `--config` switch.
 
-
 ## API discovery
 
 `drakov -f <glob expression to your md files> --discover`
 
 Enables the `/drakov` endpoint, which lists all the available endpoints currently being served by Drakov
-
 
 ## Examples with command line arguments
 
@@ -185,7 +165,7 @@ In cases where strict HTTP headers matching against API blueprints is not necess
 
 ## Using as a Node.js module
 
-    var drakov = require('drakov');
+    var drakov = require('gamora');
 
     var argv = {
         sourceFiles: 'path/to/files/**.md',
@@ -215,7 +195,7 @@ In cases where strict HTTP headers matching against API blueprints is not necess
 
 Due to protagonist parsing being async, we need to setup the middleware with an init function
 
-    var drakovMiddleware = require('drakov').middleware;
+    var drakovMiddleware = require('gamora').middleware;
 
     var argv = {
         sourceFiles: 'path/to/files/**.md',
@@ -246,18 +226,15 @@ Due to protagonist parsing being async, we need to setup the middleware with an 
 
 **Q:** If I have multiple requests/responses on the same API endpoint, which response will I get?
 
-**A:** Drakov will respond first with any responses that have a JSON schema with the first response matching the request body for that API endpoint. You can request a specific response by adding a `Prefer` header to the request in the form `Prefer:status=XXX` where `XXX` is the status code of the desired response.  See [issue #88](https://github.com/Aconex/drakov/issues/88) for details.
-
+**A:** Drakov will respond first with any responses that have a JSON schema with the first response matching the request body for that API endpoint. You can request a specific response by adding a `Prefer` header to the request in the form `Prefer:status=XXX` where `XXX` is the status code of the desired response.  See [issue #88](https://github.com/WilliamDASILVA/gamora/issues/88) for details.
 
 **Q:** If I have multiple responses on a single request, which response will I get?
 
 **A:** Drakov will respond with the first response.
 
-
 **Q:** Drakov is too loud (outputting too much logging), can I turn off request and API responses?
 
 **A:** You can suppress all but the startup output of Drakov with `--stealthmode`.
-
 
 ## CONTRIBUTING
 
@@ -277,11 +254,11 @@ If you have any ideas or questions you are welcome to post an issue.
 * We don't have any guidelines for how to log, except that you should have your type a different colour from your actual message (better logging is in our roadmap)
 
 ### Functionality that adds CLI arguments
-* Make sure you add the new argument property to the `yargsConfigOptions` object in the [arguments module](https://github.com/Aconex/drakov/blob/master/lib/arguments.js#L3)
+* Make sure you add the new argument property to the `yargsConfigOptions` object in the [arguments module](https://github.com/WilliamDASILVA/gamora/blob/master/lib/arguments.js#L3)
 
 ### Middleware functionality
-* For functionality that does something with the request object add code to the [request module](https://github.com/Aconex/drakov/blob/master/lib/middleware/request.js)
-* For functionality that does something with the response object add code to the [response module](https://github.com/Aconex/drakov/blob/master/lib/middleware/response.js)
+* For functionality that does something with the request object add code to the [request module](https://github.com/WilliamDASILVA/gamora/blob/master/lib/middleware/request.js)
+* For functionality that does something with the response object add code to the [response module](https://github.com/WilliamDASILVA/gamora/blob/master/lib/middleware/response.js)
 
 ### Testing
 * If your contribution deals with API Blueprint request/response behaviour add an example into an existing or new markdown file in the `test/example/md` directory
@@ -291,7 +268,7 @@ If you have any ideas or questions you are welcome to post an issue.
 
 ## CHANGELOG
 
-A history of changes with a list of contributors can be found at https://github.com/Aconex/drakov/blob/master/CHANGELOG.md
+A history of changes with a list of contributors can be found at https://github.com/WilliamDASILVA/gamora/blob/master/CHANGELOG.md
 
 ## MAINTAINERS
 
@@ -304,3 +281,5 @@ Marcelo Garcia de Oliveira <moliveira@aconex.com>
 *Huge thanks to Eva Mansk for the funky logo!*
 
 You are welcome to use the Drakov logo as long it is to refer to this project and you provide acknowledgement and a link back to our project.
+
+This is a fork of the "Drakov" package. Due to low maintenance, we decided to fork it for our own needs and deploy in a separate package.
